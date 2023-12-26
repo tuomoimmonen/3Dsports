@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float startSpeed = 0f;
+    private float defaultSpeed;
     [SerializeField] float accelerationSpeed = 0.01f;
     [SerializeField] float speedIncrease = 2f; //for pushing the right input
     [SerializeField] float speedDecrease = 0.5f; //for missing the input
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public GameEvent playerSpeedIncreased;
     public GameEvent playerSpeedDecreased;
     public GameEvent playerDistanceIncreased;
+    public GameEvent playerJumpedChanged;
 
     bool isBoosting = false;
     bool isSlowing = false;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         speed = startSpeed;
         previousPosition = transform.position;
+        defaultSpeed = startSpeed;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
             CalculateDistanceMoved();
 
-            speedText.text = "speed: " + speed.ToString();
+            speedText.text = "speed: " + speed.ToString("F");
         }
 
 
@@ -65,7 +68,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //todo gamemanager
-        if (Input.GetKeyDown(KeyCode.Return)) { gameStarted = true; }
+        if (Input.GetKeyDown(KeyCode.Return)) 
+        {
+            gameStarted = true;
+            isJumping = false;
+        }
     }
 
     private void StartAccelerating()
@@ -90,28 +97,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isBoosting)
+        if (gameStarted)
         {
-            //rb.AddForce(transform.forward * speedIncrease, ForceMode.Impulse);
-            //speed += speedIncrease;
-            speed *= speedIncrease;
-            isBoosting = false;
-        }
-        if (isSlowing)
-        {
-            //rb.AddForce(transform.forward * -speedDecrease, ForceMode.Impulse);
-            //speed -= speedDecrease;
-            speed *= speedDecrease;
-            isSlowing = false;
-        }
-        if (isJumping)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //rb.AddForce(transform.forward * speed, ForceMode.Impulse);
-            isJumping = false;
+            if (isBoosting)
+            {
+                //rb.AddForce(transform.forward * speedIncrease, ForceMode.Impulse);
+                //speed += speedIncrease;
+                speed *= speedIncrease;
+                isBoosting = false;
+            }
+            if (isSlowing)
+            {
+                //rb.AddForce(transform.forward * -speedDecrease, ForceMode.Impulse);
+                //speed -= speedDecrease;
+                speed *= speedDecrease;
+                isSlowing = false;
+            }
+            if (isJumping)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                //rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+                isJumping = false;
+                gameStarted = false; //stop the game when jumped
+                speed = defaultSpeed; //reset the speed
+            }
+
+            StartRunning();
         }
 
-        StartRunning();
 
     }
 
@@ -155,7 +168,9 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
             float distanceJumped = Vector3.Distance(startingPosition, rb.position); //startpos from jumpstart
-            Debug.Log(distanceJumped);
+            if(distanceJumped < 1) { distanceJumped = 0; } //guard for minimal jump at the start
+            playerJumpedChanged.Raise(this, distanceJumped);
+            //Debug.Log(distanceJumped);
         }
     }
 

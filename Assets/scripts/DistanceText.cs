@@ -14,7 +14,7 @@ public class DistanceText : MonoBehaviour
 
     void SetDistance(float distance)
     {
-        distanceText.text = distance.ToString() + "m";
+        distanceText.text = "DistanceTraveled:" + distance.ToString("F") + "m";
     }
 
     public void UpdateDistanceText(Component sender, object data)

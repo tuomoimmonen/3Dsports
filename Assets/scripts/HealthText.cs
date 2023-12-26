@@ -8,12 +8,12 @@ public class HealthText : MonoBehaviour
     [SerializeField] TMP_Text healthText;
     private void Awake()
     {
-        SetHealth(5);
+        SetHealth(0);
     }
 
     private void SetHealth(float health)
     {
-        healthText.text = health.ToString();
+        healthText.text = "score: " + health.ToString();
     }
 
     public void UpdateHealthText(Component sender, object data)
