@@ -8,14 +8,14 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float startSpeed = 0f;
     [SerializeField] float accelerationSpeed = 0.01f;
-    [SerializeField] float speedIncrease = 2f;
-    [SerializeField] float speedDecrease = 0.5f;
-    [SerializeField] public float speed;
+    [SerializeField] float speedIncrease = 2f; //for pushing the right input
+    [SerializeField] float speedDecrease = 0.5f; //for missing the input
+    [SerializeField] float speed; //players speed
 
-    private Vector3 previousPosition;
+    private Vector3 previousPosition; //for measuring the distance
     private float distance = 0f;
 
-    [SerializeField] float slowingDrag = 5f;
+    [SerializeField] float slowingDrag = 5f; //slowdown the player for missing the input
     [SerializeField] float slowingDuration = 0.5f;
 
     public bool gameStarted = false;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float jumpForce = 10f;
     bool isJumping = false;
-    Vector3 startingPosition;
+    Vector3 startingPosition; //start position for jump
 
 
     void Start()
@@ -45,31 +45,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (gameStarted)
         {
+            StartAccelerating();
 
-            float distanceMovedThisFrame = Vector3.Distance(previousPosition, transform.position);
-            distance += distanceMovedThisFrame;
-            previousPosition = transform.position;
-            playerDistanceIncreased.Raise(this, distance);
-
-            if (speed <= 0 )
-            {
-                speed = 0;
-            }
-            
-            speed += accelerationSpeed * Time.deltaTime;
-
-            if (Input.GetButtonDown("Jump")) 
-            {
-                //SpeedIncrease(); 
-                //playerSpeedIncreased.Raise(this, speed);
-            }
+            CalculateDistanceMoved();
 
             speedText.text = "speed: " + speed.ToString();
         }
 
 
         //jumping mechanic
-
         if (Input.GetKeyDown(KeyCode.LeftControl) && !isJumping)
         {
             float speedFactor = rb.velocity.magnitude;
@@ -79,7 +63,29 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             startingPosition = rb.position;
         }
+
+        //todo gamemanager
         if (Input.GetKeyDown(KeyCode.Return)) { gameStarted = true; }
+    }
+
+    private void StartAccelerating()
+    {
+        //start accelerating the player
+        speed += accelerationSpeed * Time.deltaTime;
+
+        if (speed <= 0) //guard for negative
+        {
+            speed = 0;
+        }
+    }
+
+    private void CalculateDistanceMoved()
+    {
+        //distance calculations
+        float distanceMovedThisFrame = Vector3.Distance(previousPosition, transform.position);
+        distance += distanceMovedThisFrame;
+        previousPosition = transform.position;
+        playerDistanceIncreased.Raise(this, distance);
     }
 
     private void FixedUpdate()
@@ -148,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
-            float distanceJumped = Vector3.Distance(startingPosition, rb.position);
+            float distanceJumped = Vector3.Distance(startingPosition, rb.position); //startpos from jumpstart
             Debug.Log(distanceJumped);
         }
     }

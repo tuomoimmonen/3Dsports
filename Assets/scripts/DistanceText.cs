@@ -11,15 +11,6 @@ public class DistanceText : MonoBehaviour
     {
         SetDistance(0);
     }
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     void SetDistance(float distance)
     {
