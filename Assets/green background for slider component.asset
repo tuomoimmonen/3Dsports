@@ -1,0 +1,880 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a6b9796d1c0440eba061ace5e9dff6, type: 3}
+  m_Name: green background for slider component
+  m_EditorClassIdentifier: 
+  assetsData:
+  - rid: 6331884298188357949
+  - rid: 6331884298188357956
+  - rid: 6331884298188357963
+  - rid: 6331884298188357970
+  - rid: 6331884298188357977
+  - rid: 6331884298188357984
+  - rid: 6331884298188357991
+  - rid: 6331884298188357998
+  currentMode: TextToSprite
+  m_Data:
+  - rid: 6331884298188357936
+  - rid: 6331884298188357937
+  - rid: 6331884298188357938
+  - rid: 6331884298188357939
+  - rid: 6331884298188357940
+  - rid: 6331884298188357941
+  - rid: 6331884298188357948
+  preRefinedArtifact:
+    rid: -2
+  refinedArtifact:
+    rid: -2
+  selectedArtifact:
+    rid: 6331884298188357984
+  m_Operators:
+  - rid: 6331884298188357942
+  - rid: 6331884298188357943
+  - rid: 6331884298188357944
+  - rid: 6331884298188357945
+  - rid: 6331884298188357946
+  - rid: 6331884298188357947
+  m_PreRefineOperators: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6331884298188357936
+      type: {class: FeedbackManager, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_Liked:
+          m_Values: []
+        m_Disliked:
+          m_Values: []
+    - rid: 6331884298188357937
+      type: {class: DefaultStyleData, ns: Unity.Muse.Sprite.Data, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357938
+      type: {class: GenerateButtonData, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data: 
+    - rid: 6331884298188357939
+      type: {class: MainUI/UISize, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_NodeListWidth: 300
+        m_NodeListRefineWidth: 300
+        m_AssetListRefineWidth: 200
+    - rid: 6331884298188357940
+      type: {class: SessionData, ns: Unity.Muse.Sprite.Data, asm: Unity.Muse.Sprite}
+      data:
+        m_SessionId: 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+        sessionLoaded: 
+    - rid: 6331884298188357941
+      type: {class: BookmarkManager, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_BookmarkedArtifacts:
+          m_Values: []
+        m_IsFilterEnabled: 0
+    - rid: 6331884298188357942
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357943
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - red background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357944
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 4559
+          - 0
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 0
+          - 
+          - 
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357945
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357946
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357947
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357948
+      type: {class: GenerateCountData, ns: Unity.Muse.Sprite.Data, asm: Unity.Muse.Sprite}
+      data:
+        m_Counter: 0
+    - rid: 6331884298188357949
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 5d36241b-ea15-4e6a-924e-78d4c81cbd2d
+        Seed: 27394
+        m_Operators:
+        - rid: 6331884298188357950
+        - rid: 6331884298188357951
+        - rid: 6331884298188357952
+        - rid: 6331884298188357953
+        - rid: 6331884298188357954
+        - rid: 6331884298188357955
+        history:
+        - rid: 6331884298188357949
+        m_UnsafeContent: 0
+    - rid: 6331884298188357950
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357951
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - green background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357952
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 27394
+          - 5d36241b-ea15-4e6a-924e-78d4c81cbd2d
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357953
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357954
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357955
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357956
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 0f37b5a7-b8b5-4b62-b7eb-a127cc22b539
+        Seed: 30511
+        m_Operators:
+        - rid: 6331884298188357957
+        - rid: 6331884298188357958
+        - rid: 6331884298188357959
+        - rid: 6331884298188357960
+        - rid: 6331884298188357961
+        - rid: 6331884298188357962
+        history:
+        - rid: 6331884298188357956
+        m_UnsafeContent: 0
+    - rid: 6331884298188357957
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357958
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - green background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357959
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 30511
+          - 0f37b5a7-b8b5-4b62-b7eb-a127cc22b539
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357960
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357961
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357962
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357963
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 3984fe01-579d-46e3-a0ca-355e21c2afc3
+        Seed: 59820
+        m_Operators:
+        - rid: 6331884298188357964
+        - rid: 6331884298188357965
+        - rid: 6331884298188357966
+        - rid: 6331884298188357967
+        - rid: 6331884298188357968
+        - rid: 6331884298188357969
+        history:
+        - rid: 6331884298188357963
+        m_UnsafeContent: 0
+    - rid: 6331884298188357964
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357965
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - green background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357966
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 59820
+          - 3984fe01-579d-46e3-a0ca-355e21c2afc3
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357967
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357968
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357969
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357970
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 184df044-f165-45fa-9bc4-277d38096eee
+        Seed: 29847
+        m_Operators:
+        - rid: 6331884298188357971
+        - rid: 6331884298188357972
+        - rid: 6331884298188357973
+        - rid: 6331884298188357974
+        - rid: 6331884298188357975
+        - rid: 6331884298188357976
+        history:
+        - rid: 6331884298188357970
+        m_UnsafeContent: 0
+    - rid: 6331884298188357971
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357972
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - green background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357973
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 29847
+          - 184df044-f165-45fa-9bc4-277d38096eee
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357974
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357975
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357976
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357977
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: b6543510-47e1-472d-b0bb-7e40174bb22f
+        Seed: 44547
+        m_Operators:
+        - rid: 6331884298188357978
+        - rid: 6331884298188357979
+        - rid: 6331884298188357980
+        - rid: 6331884298188357981
+        - rid: 6331884298188357982
+        - rid: 6331884298188357983
+        history:
+        - rid: 6331884298188357977
+        m_UnsafeContent: 0
+    - rid: 6331884298188357978
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357979
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - red background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357980
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 44547
+          - b6543510-47e1-472d-b0bb-7e40174bb22f
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357981
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357982
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357983
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357984
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 44411799-441d-44fc-99ba-78bb6b72e17f
+        Seed: 33456
+        m_Operators:
+        - rid: 6331884298188357985
+        - rid: 6331884298188357986
+        - rid: 6331884298188357987
+        - rid: 6331884298188357988
+        - rid: 6331884298188357989
+        - rid: 6331884298188357990
+        history:
+        - rid: 6331884298188357984
+        m_UnsafeContent: 0
+    - rid: 6331884298188357985
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357986
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - red background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357987
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 33456
+          - 44411799-441d-44fc-99ba-78bb6b72e17f
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357988
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357989
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357990
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357991
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 97808373-5169-4f51-acdc-727005c612c6
+        Seed: 9275
+        m_Operators:
+        - rid: 6331884298188357992
+        - rid: 6331884298188357993
+        - rid: 6331884298188357994
+        - rid: 6331884298188357995
+        - rid: 6331884298188357996
+        - rid: 6331884298188357997
+        history:
+        - rid: 6331884298188357991
+        m_UnsafeContent: 0
+    - rid: 6331884298188357992
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357993
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - red background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188357994
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 9275
+          - 97808373-5169-4f51-acdc-727005c612c6
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357995
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357996
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188357997
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188357998
+      type: {class: SpriteMuseArtifact, ns: Unity.Muse.Sprite.Artifacts, asm: Unity.Muse.Sprite}
+      data:
+        Guid: 7e76255d-7a78-499b-aecd-95994f8ffd49
+        Seed: 20260
+        m_Operators:
+        - rid: 6331884298188357999
+        - rid: 6331884298188358000
+        - rid: 6331884298188358001
+        - rid: 6331884298188358002
+        - rid: 6331884298188358003
+        - rid: 6331884298188358004
+        history:
+        - rid: 6331884298188357998
+        m_UnsafeContent: 1
+    - rid: 6331884298188357999
+      type: {class: GenerateOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: GenerateOperator
+          version: 0.0.1
+          settings:
+          - TextToSprite
+          - 4
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188358000
+      type: {class: PromptOperator, ns: Unity.Muse.Common, asm: Unity.Muse.Common}
+      data:
+        m_OperatorData:
+          type: PromptOperator
+          version: 0.0.2
+          settings:
+          - red background for slider component
+          - 
+          enabled: 1
+          assembly: 
+    - rid: 6331884298188358001
+      type: {class: SpriteGeneratorSettingsOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SpriteGeneratorSettingsOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - 0,85
+          - 512
+          - 512
+          - 1
+          - 1
+          - 20260
+          - 7e76255d-7a78-499b-aecd-95994f8ffd49
+          - 0
+          - 5cc104e0-423a-473e-8034-b9d346cb2357
+          - 0
+          - 03fa404b-39fc-4979-9272-deb5d8c4b24c
+          - Happy Harvest [Orion V4 2000]
+          - 8 Nov 2023
+          - 
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188358002
+      type: {class: KeyImageOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.KeyImageOperator
+          version: 0.0.1
+          settings:
+          - 
+          - 
+          - True
+          - 512
+          - 512
+          - 0.5
+          enabled: 1
+          assembly: Unity.Muse.Sprite
+    - rid: 6331884298188358003
+      type: {class: SpriteRefiningMaskOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data: 
+    - rid: 6331884298188358004
+      type: {class: SessionOperator, ns: Unity.Muse.Sprite.Operators, asm: Unity.Muse.Sprite}
+      data:
+        m_OperatorData:
+          type: Unity.Muse.Sprite.Operators.SessionOperator
+          version: 0.0.1
+          settings:
+          - 8cea0b4d-836d-4f5c-b2d4-86d517f2d1e7
+          enabled: 0
+          assembly: Unity.Muse.Sprite
