@@ -35,9 +35,12 @@ public class PlayerMovement : MonoBehaviour
     bool isJumping = false;
     Vector3 startingPosition; //start position for jump
 
+    JavelinMovement javelin;
+
 
     void Start()
     {
+        javelin = FindObjectOfType<JavelinMovement>();
         rb = GetComponent<Rigidbody>();
         speed = startSpeed;
         previousPosition = transform.position;
@@ -97,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameStarted)
+        if (gameStarted && !javelin.isFlying)
         {
             if (isBoosting)
             {
