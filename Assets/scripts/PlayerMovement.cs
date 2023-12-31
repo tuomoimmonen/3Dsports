@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        //DEBUG REMEMBER TO DISABLE
+        if(Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+        //DEBUG REMEMBER TO DISABLE
+
         if (gameStarted)
         {
             StartAccelerating();
