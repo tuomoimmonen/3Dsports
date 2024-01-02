@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float startSpeed = 0f;
-    private float defaultSpeed;
+    [SerializeField] float maxSpeed = 50f;
+    private float initialSpeed;
     [SerializeField] float accelerationSpeed = 0.01f;
     [SerializeField] float speedIncrease = 2f; //for pushing the right input
     [SerializeField] float speedDecrease = 0.5f; //for missing the input
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         speed = startSpeed;
         previousPosition = transform.position;
-        defaultSpeed = startSpeed;
+        initialSpeed = startSpeed;
     }
 
     void Update()
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //start accelerating the player
         speed += accelerationSpeed * Time.deltaTime;
+        speed = Mathf.Clamp(speed, initialSpeed, maxSpeed);
 
         if (speed <= 0) //guard for negative
         {
@@ -128,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 //rb.AddForce(transform.forward * speed, ForceMode.Impulse);
                 isJumping = false;
                 gameStarted = false; //stop the game when jumped
-                speed = defaultSpeed; //reset the speed
+                speed = initialSpeed; //reset the speed
             }
 
             StartRunning();
@@ -140,6 +142,8 @@ public class PlayerMovement : MonoBehaviour
     void StartRunning()
     {
         rb.AddForce(transform.forward * speed);
+        //Vector3 forwardMovement = transform.forward * speed * Time.fixedDeltaTime;
+        //rb.MovePosition(rb.position + forwardMovement);
     }
     public void SpeedIncrease(Component sender, object data)
     {
