@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float accelerationSpeed = 0.01f;
     [SerializeField] float speedIncrease = 2f; //for pushing the right input
     [SerializeField] float speedDecrease = 0.5f; //for missing the input
-    [SerializeField] float speed; //players speed
+    [SerializeField] public float speed; //players speed
 
     private Vector3 previousPosition; //for measuring the distance
     private float distance = 0f;
@@ -56,13 +56,19 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
         //DEBUG REMEMBER TO DISABLE
 
+        speedText.text = "speed: " + speed.ToString("F");
+
         if (gameStarted)
         {
             StartAccelerating();
 
             CalculateDistanceMoved();
 
-            speedText.text = "speed: " + speed.ToString("F");
+        }
+        else
+        {
+            speed = Mathf.Lerp(speed, 0, Time.deltaTime);
+            StartCoroutine(IsSlowing());
         }
 
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - ThrowZone
+  - Javelin
   layers:
   - Default
   - TransparentFX
