@@ -1,6 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class JavelinMovement : MonoBehaviour
 {
@@ -15,27 +17,44 @@ public class JavelinMovement : MonoBehaviour
     Vector3 startingPos;
 
     public bool isFlying = false;
+    bool javelinFinished = false;
 
     public GameEvent javelinDistanceChanged;
+    public GameEvent javelinFinish;
+
+    int sceneIndex;
 
     private void Awake()
     {
         javelinRb = GetComponent<Rigidbody>();
         javelinCollider = GetComponent<Collider>();
         player = FindObjectOfType<PlayerMovement>();
+
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
     void Start()
     {
         javelinRb.useGravity = false;
         javelinRb.isKinematic = true;
+
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if(buildIndex != 3)
+        {
+            MeshRenderer javelinMesh = GetComponent<MeshRenderer>();
+            javelinMesh.enabled = false;
+        }
     }
 
     void Update()
     {
-        //if (!isFlying) { javelinRb.velocity = playersRb.velocity; }
+        ThrowJavelin();
+    }
 
-        if (Input.GetKeyDown(KeyCode.D) && !isFlying)
+    public void ThrowJavelin()
+    {
+        if ((Input.GetKeyDown(KeyCode.D) || Keyboard.current.dKey.wasPressedThisFrame) && !isFlying && sceneIndex == 3)
         {
+            AnimationController.instance.SetAnimationTrigger("throw");
             playersSpeed = player.speed;
             totalForwardForce = throwForce * playersSpeed;
             transform.SetParent(null);
@@ -44,8 +63,6 @@ public class JavelinMovement : MonoBehaviour
             startingPos = transform.position;
             javelinRb.AddForce(Vector3.forward * totalForwardForce);
             javelinRb.AddForce(Vector3.up * totalForwardForce);
-            //javelinRb.AddForce(transform.forward * throwForce);
-            //javelinRb.AddForce(transform.up * throwForce);
             javelinCollider.isTrigger = false;
             javelinRb.useGravity = true;
             player.gameStarted = false;
@@ -56,10 +73,22 @@ public class JavelinMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            javelinFinished = true;
             float distanceTraveledInAir = Vector3.Distance(startingPos, transform.position);
             javelinDistanceChanged.Raise(this, distanceTraveledInAir);
-            Debug.Log(distanceTraveledInAir);
+            javelinFinish.Raise(this, javelinFinished);
+
+            HighScoresText.instance.AddScores(distanceTraveledInAir, sceneIndex);
+            HighScoresText.instance.UpdateScoreText();
+            HighScoresText.instance.UpdateCurrentScoreText(distanceTraveledInAir, sceneIndex);
+            StartCoroutine(BackToRunningScene());
 
         }
+    }
+
+    IEnumerator BackToRunningScene()
+    {
+        yield return new WaitForSeconds(8f);
+        SceneManager.LoadScene("Running");
     }
 }

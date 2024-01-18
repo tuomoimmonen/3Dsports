@@ -12,9 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Running.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Javelin.unity
-    guid: dce7a4608fc1fb3439df954b436c51f7
-  - enabled: 1
     path: Assets/Scenes/Longjump.unity
     guid: 25d1a9a63f6c56a49bfac5560b7b51cd
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/Javelin.unity
+    guid: dce7a4608fc1fb3439df954b436c51f7
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 1ec0231e8268f684c9c8a8c2e54d8904, type: 2}

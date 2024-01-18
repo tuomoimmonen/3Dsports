@@ -7,11 +7,12 @@ TagManager:
   - Ground
   - ThrowZone
   - Javelin
+  - Yli
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - ParticleEffects

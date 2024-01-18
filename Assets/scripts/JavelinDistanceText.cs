@@ -10,15 +10,6 @@ public class JavelinDistanceText : MonoBehaviour
     {
         SetJavelinDistanceText(0);
     }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     void SetJavelinDistanceText(float distance)
     {

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +6,11 @@ public class DistanceJumpedText : MonoBehaviour
 {
     [SerializeField] TMP_Text distanceJumpedtext;
     private void Awake()
+    {
+        SetDistanceJumpedText(0);
+    }
+
+    private void Start()
     {
         SetDistanceJumpedText(0);
     }

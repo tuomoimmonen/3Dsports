@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState { menu, running, jumping, javelin, end };
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
-    GameState state;
 
-    GameObject javelinObject;
+    GameState gameState;
 
     private void Awake()
     {
@@ -18,32 +16,34 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         instance = this;
-
-        javelinObject = GameObject.FindGameObjectWithTag("Javelin");
     }
     void Start()
     {
-        if(state != GameState.javelin)
-        {
-            javelinObject.SetActive(false);
-        }
+
     }
 
     void Update()
     {
-        SearchJavelinObject();
+        DebugLevels();
     }
 
-    private void SearchJavelinObject()
+    private void DebugLevels()
     {
-        if (javelinObject == null)
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            javelinObject = GameObject.FindGameObjectWithTag("Javelin");
-
-            if (state != GameState.javelin)
-            {
-                javelinObject.SetActive(false);
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if ((Input.GetKeyDown(KeyCode.T) || Keyboard.current.tKey.wasPressedThisFrame))
+        {
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+        }
+        else if(Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex - 1) % SceneManager.sceneCountInBuildSettings);
         }
     }
+
+
+
+
 }

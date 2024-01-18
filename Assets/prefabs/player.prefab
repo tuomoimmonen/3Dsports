@@ -540,7 +540,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b0d257716ff8fec4385edaf3ad964fd6, type: 2}
-  - {fileID: 2100000, guid: 607401a5e6edafc47850f076f1cb86da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -577,7 +576,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -595,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e03e7a81baa58a4b9d3fd65604e2e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 20
+  throwForce: 60
   isFlying: 0
   javelinDistanceChanged: {fileID: 11400000, guid: 54568098d5628c04dbb374cc81e88011, type: 2}
 --- !u!54 &86376325190857005
@@ -1146,9 +1145,13 @@ GameObject:
   - component: {fileID: 269102192008013637}
   - component: {fileID: 957314893969716207}
   - component: {fileID: 1352947856827346810}
+  - component: {fileID: 355815435454311322}
+  - component: {fileID: 4085577870272957631}
+  - component: {fileID: 7146112552302322971}
+  - component: {fileID: 5519922625834692771}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,21 +1206,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1208275bf06faec4d85da463240dacb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 27
-  maxSpeed: 100
-  accelerationSpeed: 1
-  speedIncrease: 1.05
+  startSpeed: 0
+  maxSpeed: 50
+  accelerationSpeed: 0.5
+  speedIncrease: 1.045
   speedDecrease: 0.8
   speed: 0
   slowingDrag: 5
   slowingDuration: 0.5
+  finishSlowDuration: 3
   gameStarted: 0
-  speedText: {fileID: 0}
   playerSpeedIncreased: {fileID: 11400000, guid: b651a30c037cf63469470632331655dc, type: 2}
   playerSpeedDecreased: {fileID: 11400000, guid: 9fa38616e576a26419a27efa0be4e537, type: 2}
   playerDistanceIncreased: {fileID: 11400000, guid: c3b6418510d875e438ad4108e16bfcf2, type: 2}
   playerJumpedChanged: {fileID: 11400000, guid: ba34d239afd0ada42a9843b49c6bea6b, type: 2}
+  playersSpeedValue: {fileID: 11400000, guid: 26e66b5333c5d8a40a9f5d57aa3b7fa7, type: 2}
+  playerRunTimeValue: {fileID: 11400000, guid: f4d20723248c5ae44979d18e5997f91e, type: 2}
   jumpForce: 10
+  groundCheckDistance: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  gravityInAir: -18
 --- !u!65 &269102192008013637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1237,8 +1247,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.49379712, y: 0.2840498, z: 0.37791505}
-  m_Center: {x: 0.03128013, y: 0.14649191, z: 0.079982355}
+  m_Size: {x: 0.49379712, y: 2.1673932, z: 0.37791505}
+  m_Center: {x: 0.03128013, y: 1.0881636, z: 0.079982355}
 --- !u!54 &957314893969716207
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1294,6 +1304,116 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &355815435454311322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64718ebf49f763449a87739309452fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1ca517162b6923943b399840ce87da78, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 842878825535674002}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: SetStartPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4085577870272957631}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: CanPlayJavelinThrownAnim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4085577870272957631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8caf5fbfbbfc24e93141c7a065f941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7146112552302322971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64718ebf49f763449a87739309452fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 26e66b5333c5d8a40a9f5d57aa3b7fa7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4085577870272957631}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: GetPlayerSpeed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5519922625834692771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a2d75e53db311ac4e937a12f0e9f30ae, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7871173084492465582
 GameObject:
   m_ObjectHideFlags: 0
