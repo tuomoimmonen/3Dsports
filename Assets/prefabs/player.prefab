@@ -597,6 +597,7 @@ MonoBehaviour:
   throwForce: 60
   isFlying: 0
   javelinDistanceChanged: {fileID: 11400000, guid: 54568098d5628c04dbb374cc81e88011, type: 2}
+  javelinFinish: {fileID: 11400000, guid: a317d2c222630044f93f5cb34c143b9d, type: 2}
 --- !u!54 &86376325190857005
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1149,6 +1150,9 @@ GameObject:
   - component: {fileID: 4085577870272957631}
   - component: {fileID: 7146112552302322971}
   - component: {fileID: 5519922625834692771}
+  - component: {fileID: 3952176122681685387}
+  - component: {fileID: 7383727854144439159}
+  - component: {fileID: 4243908909257754583}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1212,6 +1216,7 @@ MonoBehaviour:
   speedIncrease: 1.045
   speedDecrease: 0.8
   speed: 0
+  runTime: 0
   slowingDrag: 5
   slowingDuration: 0.5
   finishSlowDuration: 3
@@ -1222,6 +1227,8 @@ MonoBehaviour:
   playerJumpedChanged: {fileID: 11400000, guid: ba34d239afd0ada42a9843b49c6bea6b, type: 2}
   playersSpeedValue: {fileID: 11400000, guid: 26e66b5333c5d8a40a9f5d57aa3b7fa7, type: 2}
   playerRunTimeValue: {fileID: 11400000, guid: f4d20723248c5ae44979d18e5997f91e, type: 2}
+  overStepped: {fileID: 11400000, guid: fe1c4076872bb1c41be9750865dfa6e6, type: 2}
+  playerFinished: {fileID: 11400000, guid: 5e61a7b8ab58d094080decd8ab653498, type: 2}
   jumpForce: 10
   groundCheckDistance: 0.1
   groundLayer:
@@ -1332,18 +1339,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4085577870272957631}
-        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
-        m_MethodName: CanPlayJavelinThrownAnim
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4085577870272957631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,6 +1409,90 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3952176122681685387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64718ebf49f763449a87739309452fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9c4f1ec736af4964f9b35705839fbb4d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 842878825535674002}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ChangeJumpDistanceStartPoint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7383727854144439159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64718ebf49f763449a87739309452fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f8780653a92d0404b9d2440335be2d82, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 842878825535674002}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ChangeCanMoveBool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4243908909257754583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127651700089641195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64718ebf49f763449a87739309452fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ad33e2cde54cc73479998b10df7ee7b6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 842878825535674002}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ChangeCanMoveBool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7871173084492465582
 GameObject:
   m_ObjectHideFlags: 0

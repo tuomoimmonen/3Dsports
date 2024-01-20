@@ -61,8 +61,8 @@ public class JavelinMovement : MonoBehaviour
             isFlying = true;
             javelinRb.isKinematic = false;
             startingPos = transform.position;
-            javelinRb.AddForce(Vector3.forward * totalForwardForce);
-            javelinRb.AddForce(Vector3.up * totalForwardForce);
+            javelinRb.AddForce(Vector3.forward * totalForwardForce * 1.25f);
+            javelinRb.AddForce(Vector3.up * totalForwardForce * 0.65f);
             javelinCollider.isTrigger = false;
             javelinRb.useGravity = true;
             player.gameStarted = false;
@@ -81,7 +81,7 @@ public class JavelinMovement : MonoBehaviour
             HighScoresText.instance.AddScores(distanceTraveledInAir, sceneIndex);
             HighScoresText.instance.UpdateScoreText();
             HighScoresText.instance.UpdateCurrentScoreText(distanceTraveledInAir, sceneIndex);
-            StartCoroutine(BackToRunningScene());
+            //StartCoroutine(BackToRunningScene());
 
         }
     }

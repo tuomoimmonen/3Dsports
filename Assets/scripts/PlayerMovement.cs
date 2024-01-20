@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public GameEvent playerJumpedChanged;
     public GameEvent playersSpeedValue; //for ui
     public GameEvent playerRunTimeValue; //for ui
+    public GameEvent overStepped;
+    public GameEvent playerFinished;
 
     bool isBoosting = false; //ui elements
     bool isSlowing = false; //ui elements
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 10f;
     bool isJumping = false;
     bool canSendJumpData = false; //prevent wrong data when changing scenes
-    Vector3 startingPosition; //start position for jump
+    Vector3 jumpStartPosition; //start position for jump
 
     JavelinMovement javelin;
 
@@ -80,12 +82,13 @@ public class PlayerMovement : MonoBehaviour
         HandleSpeedData();
         CheckTheGround();
 
-        if (gameStarted)
+        if (canMove)
         {
             initialSpeed = 1f; //get boost at the start
             StartAccelerating();
             UpdatePlayersRunTime();
             CalculateDistanceMoved();
+            JumpKey();
 
             if (isBoosting)
             {
@@ -105,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
             speed = Mathf.Lerp(speed, 0, Time.deltaTime * finishSlowDuration); //slow the player in the finish line
         }
 
-        JumpKey();
+
     }
 
     public void JumpKey()
@@ -120,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
             //rb.AddForce(transform.forward * speed, ForceMode.Impulse);
             isJumping = true;
             canSendJumpData = true;
-            startingPosition = rb.position;
         }
     }
 
@@ -253,15 +255,44 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") && canSendJumpData)
         {
             canSendJumpData = false;
-            float distanceJumped = Vector3.Distance(startingPosition, rb.position); //startpos from jumpstart
+            float distanceJumped = Vector3.Distance(jumpStartPosition, rb.position); //startpos from jumpstart
             if(distanceJumped < 1) { distanceJumped = 0; } //guard for minimal jump at the start
             playerJumpedChanged.Raise(this, distanceJumped);
+            playerFinished.Raise(this, true);
             HighScoresText.instance.AddScores(distanceJumped, sceneIndex);
             HighScoresText.instance.UpdateScoreText();
             HighScoresText.instance.UpdateCurrentScoreText(distanceJumped, sceneIndex);
-            gameStarted = false;
-            Debug.Log(distanceJumped);
+            canMove = false;
         }
     }
+
+    public void ChangeJumpDistanceStartPoint(Component sender, object data)
+    {
+        if(data is Vector3)
+        {
+            Vector3 startPosition = (Vector3)data;
+            jumpStartPosition = startPosition;
+        }
+    }
+
+    public void ChangeCanMoveBool(Component sender, object data)
+    {
+        if(data is bool)
+        {
+            bool playerIsAbleToMove = (bool)data;
+            canMove = playerIsAbleToMove;
+        }
+    }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Yli"))
+        {
+            //canMove = false;
+            overStepped.Raise(this, true);
+        }
+    }
+    
 
 }

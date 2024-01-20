@@ -9,10 +9,13 @@ public class ColliderSetup : MonoBehaviour
 
 
     public GameEvent sceneFinished;
+    //public GameEvent playerOverStepped;
+    public GameEvent changeCanMoveBool;
 
     int sceneIndex;
 
     bool playerFinished = false;
+    bool playerCanMove = true;
 
     private void Awake()
     {
@@ -33,24 +36,25 @@ public class ColliderSetup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerMovement player = other.GetComponent<PlayerMovement>();
-            player.gameStarted = false;
+            playerCanMove = false;
             playerFinished = true;
 
             if(sceneIndex == 1) 
             {
-                HighScoresText.instance.AddScores(player.runTime, sceneIndex); 
+                HighScoresText.instance.AddScores(player.runTime, sceneIndex);
                 HighScoresText.instance.UpdateScoreText();
                 HighScoresText.instance.UpdateCurrentScoreText(player.runTime, sceneIndex);
+                sceneFinished.Raise(this, playerFinished);
+                changeCanMoveBool.Raise(this, playerCanMove);
+            }
+            else if ((sceneIndex == 2) || (sceneIndex == 3)) 
+            {
+                //sceneFinished.Raise(this, playerFinished);
+                //playerOverStepped.Raise(this, playerFinished);
+                changeCanMoveBool.Raise(this, playerCanMove);
             }
 
-            sceneFinished.Raise(this, playerFinished);
-            LoadGameOverPanel();
-            //StartCoroutine(LoadNextLevel());
         }
-    }
-
-    private void LoadGameOverPanel()
-    {
     }
 
     IEnumerator LoadNextLevel()

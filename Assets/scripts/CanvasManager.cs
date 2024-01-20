@@ -13,6 +13,10 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject jumpDistanceText;
     [SerializeField] GameObject runTimeText;
 
+    [SerializeField] GameObject jumpButton;
+    [SerializeField] GameObject runButton;
+    [SerializeField] GameObject throwButton;
+
     int sceneIndex = 0;
 
     private void Awake()
@@ -44,11 +48,17 @@ public class CanvasManager : MonoBehaviour
                 speedText.SetActive(false);
                 javelinDistanceText.SetActive(false);
                 jumpDistanceText.SetActive(false);
+                runButton.SetActive(false);
+                jumpButton.SetActive(false);
+                throwButton.SetActive(false);
                 break;
 
             case 1:
                 runTimeText.SetActive(true);
                 speedText.SetActive(true);
+                runButton.SetActive(true);
+                jumpButton.SetActive(false);
+                throwButton.SetActive(false);
                 javelinDistanceText.SetActive(false);
                 jumpDistanceText.SetActive(false);
                 break;
@@ -56,6 +66,9 @@ public class CanvasManager : MonoBehaviour
             case 2:
                 runTimeText.SetActive(false);
                 speedText.SetActive(true);
+                runButton.SetActive(false);
+                jumpButton.SetActive(true);
+                throwButton.SetActive(false);
                 javelinDistanceText.SetActive(false);
                 jumpDistanceText.SetActive(true);
                 break;
@@ -63,6 +76,9 @@ public class CanvasManager : MonoBehaviour
             case 3:
                 runTimeText.SetActive(false);
                 speedText.SetActive(true);
+                runButton.SetActive(false);
+                jumpButton.SetActive(false);
+                throwButton.SetActive(true);
                 javelinDistanceText.SetActive(true);
                 jumpDistanceText.SetActive(false);
                 break;
