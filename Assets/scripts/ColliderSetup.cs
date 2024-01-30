@@ -46,6 +46,7 @@ public class ColliderSetup : MonoBehaviour
                 HighScoresText.instance.UpdateCurrentScoreText(player.runTime, sceneIndex);
                 sceneFinished.Raise(this, playerFinished);
                 changeCanMoveBool.Raise(this, playerCanMove);
+                SoundManager.instance.PlayAudio(7);
             }
             else if ((sceneIndex == 2) || (sceneIndex == 3)) 
             {

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
-public enum GameState { menu, running, jumping, javelin, end };
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -13,8 +12,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] float startTimer;
     [SerializeField] TMP_Text timerText;
-
-    GameState gameState;
 
     [SerializeField] TMP_Text pushForMoreSpeedText;
     bool pushSpeedButton = false;
@@ -28,6 +25,8 @@ public class GameManager : MonoBehaviour
     public GameEvent startGame;
     bool startTimerStarted;
     bool startTimerFinished;
+    bool startBeepsPlayed;
+    bool startPistolPlayed;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -47,12 +46,29 @@ public class GameManager : MonoBehaviour
     {
         DebugLevels();
         GameTutorial();
+
+        if(startTimerStarted && !startBeepsPlayed) 
+        { 
+            startBeepsPlayed = true;
+            SoundManager.instance.PlayAudioNotPitched(5); 
+        }
+
+        if(startTimerFinished && !startPistolPlayed && sceneIndex != 2 && sceneIndex != 3)
+        {
+            startPistolPlayed = true;
+            SoundManager.instance.PlayAudioNotPitched(6);
+        }
     }
 
     private void GameTutorial()
     {
         switch(sceneIndex)
         {
+            case 0:
+                pushForMoreSpeedText.enabled = false;
+                pushToJumpText.enabled = false;
+                pushToThrowText.enabled = false;
+                break;
             case 1:
                 if(!gameTutorialComplete && !pushSpeedButton)
                 {
@@ -62,6 +78,7 @@ public class GameManager : MonoBehaviour
                     {
                         pushForMoreSpeedText.enabled = false;
                         gameTutorialComplete = true;
+
                     }
                 }
                 else if (gameTutorialComplete && !startTimerFinished)
@@ -70,7 +87,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(StartTheTimer());
                     if(startTimer >= 1 && startTimerStarted)
                     {
-                        timerText.text = startTimer.ToString("F0");
+                        //timerText.text = startTimer.ToString("F0");
                     }
                     else if (startTimer <= 0)
                     {
@@ -79,6 +96,7 @@ public class GameManager : MonoBehaviour
                         StartCoroutine(DisableStartTimerText());
                     }
                 }
+
                 break;
             case 2:
                 if(!gameTutorialComplete)
@@ -110,7 +128,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(StartTheTimer());
                     if (startTimer >= 1 && startTimerStarted)
                     {
-                        timerText.text = startTimer.ToString("F0");
+                        //timerText.text = startTimer.ToString("F0");
                     }
                     else if (startTimer <= 0)
                     {
@@ -151,7 +169,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(StartTheTimer());
                     if (startTimer >= 1 && startTimerStarted)
                     {
-                        timerText.text = startTimer.ToString("F0");
+                        //timerText.text = startTimer.ToString("F0");
                     }
                     else if (startTimer <= 0)
                     {
@@ -183,18 +201,17 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartTheTimer()
     {
+        
         yield return new WaitForSeconds(2f);
         startTimerStarted = true;
         startTimer -= Time.deltaTime;
+
     }
 
     IEnumerator DisableStartTimerText()
     {
+        startTimerFinished = true;
         yield return new WaitForSeconds(1f);
         timerText.enabled = false;
-        startTimerFinished = true;
     }
-
-
-
 }

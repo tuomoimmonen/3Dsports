@@ -26,9 +26,9 @@ public class PanelManager : MonoBehaviour
     {
         if(data is bool)
         {
-            Debug.Log(data.ToString());
             bool showGameFinishedPanel = (bool)data;
-            ShowFinishPanel(showGameFinishedPanel);
+            //ShowFinishPanel(showGameFinishedPanel);
+            StartCoroutine(StartLoadingFinishPanel(showGameFinishedPanel));
         }
     }
 
@@ -36,7 +36,6 @@ public class PanelManager : MonoBehaviour
     {
         if (data is bool)
         {
-            Debug.Log(data.ToString());
             bool showGameOverPanel = (bool)data;
             ShowGameOverPanel(showGameOverPanel);
         }
@@ -62,5 +61,11 @@ public class PanelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator StartLoadingFinishPanel(bool showFinishPanel)
+    {
+        yield return new WaitForSeconds(1.5f);
+        ShowFinishPanel(showFinishPanel);
     }
 }

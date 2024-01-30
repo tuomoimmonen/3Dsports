@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] GameObject groundCheckObject;
     Rigidbody rb;
     [SerializeField] float startSpeed = 0f;
     [SerializeField] float maxSpeed = 50f;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     JavelinMovement javelin;
 
     bool jumpForceAdded = false;
-    bool isGrounded;
+    public bool isGrounded;
     [SerializeField] float groundCheckDistance = 0.1f;
     [SerializeField] LayerMask groundLayer;
 
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     int sceneIndex;
 
     bool canMove;
+    bool playerIsInJumpZone;
 
     private void Awake()
     {
@@ -73,14 +75,20 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //DEBUG REMEMBER TO DISABLE
-        if (Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        }
         //DEBUG REMEMBER TO DISABLE
 
         //todo gamemanager
 
-        StartGameWithEnterKey();
+        //StartGameWithEnterKey();
         HandleSpeedData();
         CheckTheGround();
+
+        JumpKey();
 
         if (canMove)
         {
@@ -88,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             StartAccelerating();
             UpdatePlayersRunTime();
             CalculateDistanceMoved();
-            JumpKey();
+            
 
             if (isBoosting)
             {
@@ -108,21 +116,22 @@ public class PlayerMovement : MonoBehaviour
             speed = Mathf.Lerp(speed, 0, Time.deltaTime * finishSlowDuration); //slow the player in the finish line
         }
 
-
+        DebugDrawRay();
     }
 
     public void JumpKey()
     {
         //jumping mechanic
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || Keyboard.current.leftCtrlKey.wasPressedThisFrame) && !isJumping && sceneIndex == 2)
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || Keyboard.current.leftCtrlKey.wasPressedThisFrame) && isGrounded && sceneIndex == 2)
         {
             AnimationController.instance.SetAnimationTrigger("jump");
-            float speedFactor = rb.velocity.magnitude;
-            //rb.velocity = Vector3.up * jumpForce;
-            //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //rb.AddForce(transform.forward * speed, ForceMode.Impulse);
-            isJumping = true;
-            canSendJumpData = true;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            SoundManager.instance.PlayAudio(3);
+            if (canMove) 
+            {
+                isJumping = true;
+                canSendJumpData = true; 
+            }
         }
     }
 
@@ -140,13 +149,14 @@ public class PlayerMovement : MonoBehaviour
         if (!javelin.isFlying)
         {
             StartRunning();
-
+            /*
             if (isJumping && !jumpForceAdded)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                 isJumping = false;
                 jumpForceAdded = true;
             }
+            */
 
             if (!isGrounded)
             {
@@ -162,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
         bool CheckGround()
         {
             RaycastHit hit;
-            Vector3 raycastOrigin = transform.position;
+            Vector3 raycastOrigin = groundCheckObject.transform.position;
             bool raycastHit = Physics.Raycast(raycastOrigin, Vector3.down, out hit, groundCheckDistance, groundLayer);
             return raycastHit;
         }
@@ -171,6 +181,12 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpForceAdded = false;
         }
+    }
+
+    private void DebugDrawRay()
+    {
+        // Draw a ray from the object's position downward for visualization
+        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.yellow);
     }
 
     private void HandleSpeedData()
@@ -222,14 +238,17 @@ public class PlayerMovement : MonoBehaviour
                 //speed += speedIncrease;
                 playerSpeedIncreased.Raise(this, canBoost);
                 isBoosting = true;
+                SoundManager.instance.PlayAudio(1);
 
             }
             else if (!canBoost && (Input.GetButtonDown("Jump") || Keyboard.current.spaceKey.wasPressedThisFrame))
             {
                 //speed -= speedDecrease;
                 isSlowing = true;
+                AnimationController.instance.SetAnimationTrigger("runFail");
                 playerSpeedDecreased.Raise(this, canBoost);
                 StartCoroutine(IsSlowing());
+                SoundManager.instance.PlayAudio(2);
             }
         }
     }
@@ -255,13 +274,24 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") && canSendJumpData)
         {
             canSendJumpData = false;
-            float distanceJumped = Vector3.Distance(jumpStartPosition, rb.position); //startpos from jumpstart
-            if(distanceJumped < 1) { distanceJumped = 0; } //guard for minimal jump at the start
-            playerJumpedChanged.Raise(this, distanceJumped);
+            if(playerIsInJumpZone)
+            {
+                float distanceJumped = Vector3.Distance(jumpStartPosition, rb.position); //startpos from jumpstart
+                if (distanceJumped < 1) { distanceJumped = 0; } //guard for minimal jump at the start
+                playerJumpedChanged.Raise(this, distanceJumped);
+                HighScoresText.instance.AddScores(distanceJumped, sceneIndex);
+                HighScoresText.instance.UpdateScoreText();
+                HighScoresText.instance.UpdateCurrentScoreText(distanceJumped, sceneIndex);
+                SoundManager.instance.PlayAudio(7);
+            }
+            else if (!playerIsInJumpZone)
+            {
+                HighScoresText.instance.AddScores(0, sceneIndex);
+                HighScoresText.instance.UpdateScoreText();
+                HighScoresText.instance.UpdateCurrentScoreText(0, sceneIndex);
+                SoundManager.instance.PlayAudio(2);
+            }
             playerFinished.Raise(this, true);
-            HighScoresText.instance.AddScores(distanceJumped, sceneIndex);
-            HighScoresText.instance.UpdateScoreText();
-            HighScoresText.instance.UpdateCurrentScoreText(distanceJumped, sceneIndex);
             canMove = false;
         }
     }
@@ -291,6 +321,16 @@ public class PlayerMovement : MonoBehaviour
         {
             //canMove = false;
             overStepped.Raise(this, true);
+            SoundManager.instance.PlayAudio(2);
+        }
+    }
+
+    public void SetJumpZoneBool(Component sender, object data)
+    {
+        if (data is bool) 
+        {
+            bool playerInJumpZone = (bool)data;
+            playerIsInJumpZone = playerInJumpZone;
         }
     }
     

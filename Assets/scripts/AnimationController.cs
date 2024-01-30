@@ -12,6 +12,9 @@ public class AnimationController : MonoBehaviour
     private float playerSpeed;
 
     int sceneIndex;
+    [SerializeField] float minAnimSpeed = 1.0f;
+    [SerializeField] float maxAnimSpeed = 2.0f;
+    [SerializeField] float maxPlayerSpeed = 25.0f;
 
     private void Awake()
     {
@@ -52,7 +55,16 @@ public class AnimationController : MonoBehaviour
     {
         AnimatorStateInfo animatorState = anim.GetCurrentAnimatorStateInfo(0);
 
-        anim.SetFloat("zVelocity", playerSpeed, 0.1f, Time.deltaTime); 
+        anim.SetFloat("zVelocity", playerSpeed, 0.1f, Time.deltaTime);
+
+        if (animatorState.IsName("run/idle"))
+        {
+            float normalizedSpeed = playerSpeed / maxPlayerSpeed; // value 0-1
+            normalizedSpeed = Mathf.Clamp01(normalizedSpeed);
+            float remappedSpeed = minAnimSpeed + normalizedSpeed * (maxAnimSpeed - minAnimSpeed); //remap the normalized speed to min max animator speed
+
+            anim.speed = Mathf.Lerp(anim.speed, remappedSpeed, Time.deltaTime);
+        }
     }
 
     public void SetAnimationTrigger(string name)

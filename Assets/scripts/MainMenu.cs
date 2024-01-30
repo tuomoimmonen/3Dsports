@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator StartLoadingLevel()
     {
-        //TODO AUDIO HERE
+        SoundManager.instance.PlayAudio(0);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -20,4 +20,6 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+
 }

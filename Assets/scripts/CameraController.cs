@@ -54,10 +54,15 @@ public class CameraController : MonoBehaviour
                 }
                 break;
             case 3:
-                if (!javelin.isFlying)
+                if (playerFinished)
                 {
                     playerCamera.enabled = false;
                     JavelinFinishedCameraPosition();
+
+                    if (!javelin.isFlying)
+                    {
+
+                    }
                 }
                 break;
         }
