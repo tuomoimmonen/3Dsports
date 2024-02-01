@@ -14,11 +14,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text timerText;
 
     [SerializeField] TMP_Text pushForMoreSpeedText;
+    [SerializeField] GameObject tapRunButtonImage;
     bool pushSpeedButton = false;
     [SerializeField] TMP_Text pushToJumpText;
+    [SerializeField] GameObject tapJumpButtonImage;
     bool pushJumpButton = false;
     [SerializeField] TMP_Text pushToThrowText;
+    [SerializeField] GameObject tapThrowButtonImage;
     bool pushThrowButton = false;
+
+    [SerializeField] GameObject rightHelpArrowImage;
+    [SerializeField] GameObject leftHelpArrowImage;
+
+    [SerializeField] GameObject energyZoneHelpImage;
+    [SerializeField] GameObject energyArrowHelpImage;
 
     int sceneIndex;
 
@@ -65,18 +74,28 @@ public class GameManager : MonoBehaviour
         switch(sceneIndex)
         {
             case 0:
-                pushForMoreSpeedText.enabled = false;
-                pushToJumpText.enabled = false;
-                pushToThrowText.enabled = false;
+                //pushForMoreSpeedText.enabled = false;
+                //pushToJumpText.enabled = false;
+                //pushToThrowText.enabled = false;
+                tapRunButtonImage.SetActive(false);
+                tapJumpButtonImage.SetActive(false);
+                tapThrowButtonImage.SetActive(false);
+                rightHelpArrowImage.SetActive(false);
+                leftHelpArrowImage.SetActive(false);
+                energyArrowHelpImage.SetActive(false);
+                energyZoneHelpImage.SetActive(false);
                 break;
             case 1:
                 if(!gameTutorialComplete && !pushSpeedButton)
                 {
-                    pushForMoreSpeedText.enabled = true;
-                    pushToJumpText.enabled = false;
+                    //pushForMoreSpeedText.enabled = true;
+                    tapRunButtonImage.SetActive(true);
+                    rightHelpArrowImage.SetActive(true);
                     if((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                     {
-                        pushForMoreSpeedText.enabled = false;
+                        //pushForMoreSpeedText.enabled = false;
+                        tapRunButtonImage.SetActive(false);
+                        rightHelpArrowImage.SetActive(false);
                         gameTutorialComplete = true;
 
                     }
@@ -87,12 +106,16 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(StartTheTimer());
                     if(startTimer >= 1 && startTimerStarted)
                     {
-                        //timerText.text = startTimer.ToString("F0");
+                        timerText.text = "";
+                        energyArrowHelpImage.SetActive(true);
+                        energyZoneHelpImage.SetActive(true);
                     }
                     else if (startTimer <= 0)
                     {
                         startGame.Raise(this, gameTutorialComplete);
                         timerText.text = "GO!";
+                        energyArrowHelpImage.SetActive(false);
+                        energyZoneHelpImage.SetActive(false);
                         StartCoroutine(DisableStartTimerText());
                     }
                 }
@@ -103,20 +126,28 @@ public class GameManager : MonoBehaviour
                 {
                     if (!pushSpeedButton)
                     {
-                        pushForMoreSpeedText.enabled = true;
+                        //pushForMoreSpeedText.enabled = true;
+                        tapRunButtonImage.SetActive(true);
+                        rightHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                         {
-                            pushForMoreSpeedText.enabled = false;
+                            //pushForMoreSpeedText.enabled = false;
+                            tapRunButtonImage.SetActive(false);
+                            rightHelpArrowImage.SetActive(false);
                             pushSpeedButton = true;
                         }
 
                     }
                     else if (pushSpeedButton && !pushJumpButton)
                     {
-                        pushToJumpText.enabled = true;
+                        //pushToJumpText.enabled = true;
+                        tapJumpButtonImage.SetActive(true);
+                        leftHelpArrowImage.SetActive(true);
                         if((Input.GetKeyDown(KeyCode.LeftControl) || Keyboard.current.leftCtrlKey.wasPressedThisFrame))
                         {
-                            pushToJumpText.enabled = false;
+                            //pushToJumpText.enabled = false;
+                            tapJumpButtonImage.SetActive(false);
+                            leftHelpArrowImage.SetActive(false);
                             pushJumpButton = true;
                             gameTutorialComplete = true;
                         }
@@ -143,20 +174,28 @@ public class GameManager : MonoBehaviour
                 {
                     if (!pushSpeedButton)
                     {
-                        pushForMoreSpeedText.enabled = true;
+                        //pushForMoreSpeedText.enabled = true;
+                        tapRunButtonImage.SetActive(true);
+                        rightHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                         {
-                            pushForMoreSpeedText.enabled = false;
+                            //pushForMoreSpeedText.enabled = false;
+                            tapRunButtonImage.SetActive(false);
+                            rightHelpArrowImage.SetActive(false);
                             pushSpeedButton = true;
                         }
                     }
 
                     else if (pushSpeedButton && !pushThrowButton)
                     {
-                        pushToThrowText.enabled = true;
+                        //pushToThrowText.enabled = true;
+                        tapThrowButtonImage.SetActive(true);
+                        leftHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.D) || Keyboard.current.dKey.wasPressedThisFrame))
                         {
-                            pushToThrowText.enabled = false;
+                            //pushToThrowText.enabled = false;
+                            tapThrowButtonImage.SetActive(false);
+                            leftHelpArrowImage.SetActive(false);
                             pushThrowButton = true;
                             gameTutorialComplete = true;
                         }

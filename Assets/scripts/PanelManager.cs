@@ -47,12 +47,25 @@ public class PanelManager : MonoBehaviour
         StartCoroutine(StartLoadingNextLevel());
     }
 
+    public void ChooseNextLevelButton(int sceneIndex)
+    {
+        StartCoroutine(LoadThePickedLevel(sceneIndex));
+    }
+
+    IEnumerator LoadThePickedLevel(int sceneIndex)
+    {
+        SoundManager.instance.PlayAudio(0);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     public void TryAgainButton()
     {
         StartCoroutine(ReloadTheScene());
     }
     IEnumerator StartLoadingNextLevel()
     {
+        SoundManager.instance.PlayAudio(0);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
     }

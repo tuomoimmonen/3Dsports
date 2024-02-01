@@ -38,49 +38,33 @@ public class CanvasManager : MonoBehaviour
     {
 
     }
-
+    
     private void UpdateTextObjectsOnScreen()
     {
         switch (sceneIndex)
         {
             case 0:
-                runTimeText.SetActive(false);
-                speedText.SetActive(false);
-                javelinDistanceText.SetActive(false);
-                jumpDistanceText.SetActive(false);
                 runButton.SetActive(false);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(false);
                 break;
 
             case 1:
-                runTimeText.SetActive(true);
-                speedText.SetActive(true);
                 runButton.SetActive(true);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(false);
-                javelinDistanceText.SetActive(false);
-                jumpDistanceText.SetActive(false);
                 break;
 
             case 2:
-                runTimeText.SetActive(false);
-                speedText.SetActive(true);
                 runButton.SetActive(false);
                 jumpButton.SetActive(true);
                 throwButton.SetActive(false);
-                javelinDistanceText.SetActive(false);
-                jumpDistanceText.SetActive(true);
                 break;
 
             case 3:
-                runTimeText.SetActive(false);
-                speedText.SetActive(true);
                 runButton.SetActive(false);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(true);
-                javelinDistanceText.SetActive(true);
-                jumpDistanceText.SetActive(false);
                 break;
 
         }
