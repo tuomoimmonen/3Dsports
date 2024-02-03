@@ -47,24 +47,28 @@ public class CanvasManager : MonoBehaviour
                 runButton.SetActive(false);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(false);
+                speedText.SetActive(false);
                 break;
 
             case 1:
                 runButton.SetActive(true);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(false);
+                speedText.SetActive(true);
                 break;
 
             case 2:
                 runButton.SetActive(false);
                 jumpButton.SetActive(true);
                 throwButton.SetActive(false);
+                speedText.SetActive(true);
                 break;
 
             case 3:
                 runButton.SetActive(false);
                 jumpButton.SetActive(false);
                 throwButton.SetActive(true);
+                speedText.SetActive(true);
                 break;
 
         }

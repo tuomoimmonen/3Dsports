@@ -7,6 +7,8 @@ public class PanelManager : MonoBehaviour
 {
     [SerializeField] GameObject finishPanel;
     [SerializeField] GameObject gameOverPanel;
+
+    [SerializeField] float waitBeforeShowFinishPanel = 3f;
     void Start()
     {
         finishPanel.SetActive(false);
@@ -78,7 +80,7 @@ public class PanelManager : MonoBehaviour
 
     IEnumerator StartLoadingFinishPanel(bool showFinishPanel)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(waitBeforeShowFinishPanel);
         ShowFinishPanel(showFinishPanel);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
     bool startTimerFinished;
     bool startBeepsPlayed;
     bool startPistolPlayed;
+
+    [SerializeField] GameObject getReadyImage;
+    [SerializeField] GameObject goImage;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -74,9 +78,6 @@ public class GameManager : MonoBehaviour
         switch(sceneIndex)
         {
             case 0:
-                //pushForMoreSpeedText.enabled = false;
-                //pushToJumpText.enabled = false;
-                //pushToThrowText.enabled = false;
                 tapRunButtonImage.SetActive(false);
                 tapJumpButtonImage.SetActive(false);
                 tapThrowButtonImage.SetActive(false);
@@ -84,16 +85,17 @@ public class GameManager : MonoBehaviour
                 leftHelpArrowImage.SetActive(false);
                 energyArrowHelpImage.SetActive(false);
                 energyZoneHelpImage.SetActive(false);
+                goImage.SetActive(false);
+                getReadyImage.SetActive(false);
                 break;
             case 1:
                 if(!gameTutorialComplete && !pushSpeedButton)
                 {
-                    //pushForMoreSpeedText.enabled = true;
+
                     tapRunButtonImage.SetActive(true);
                     rightHelpArrowImage.SetActive(true);
                     if((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                     {
-                        //pushForMoreSpeedText.enabled = false;
                         tapRunButtonImage.SetActive(false);
                         rightHelpArrowImage.SetActive(false);
                         gameTutorialComplete = true;
@@ -102,18 +104,21 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameTutorialComplete && !startTimerFinished)
                 {
-                    if (!startTimerStarted) { timerText.text = "GET READY"; }
+                    if (!startTimerStarted) 
+                    { 
+                        getReadyImage.SetActive(true);
+                    }
                     StartCoroutine(StartTheTimer());
                     if(startTimer >= 1 && startTimerStarted)
                     {
-                        timerText.text = "";
+                        getReadyImage.SetActive(false);
                         energyArrowHelpImage.SetActive(true);
                         energyZoneHelpImage.SetActive(true);
                     }
                     else if (startTimer <= 0)
                     {
                         startGame.Raise(this, gameTutorialComplete);
-                        timerText.text = "GO!";
+                        goImage.SetActive(true);
                         energyArrowHelpImage.SetActive(false);
                         energyZoneHelpImage.SetActive(false);
                         StartCoroutine(DisableStartTimerText());
@@ -126,12 +131,10 @@ public class GameManager : MonoBehaviour
                 {
                     if (!pushSpeedButton)
                     {
-                        //pushForMoreSpeedText.enabled = true;
                         tapRunButtonImage.SetActive(true);
                         rightHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                         {
-                            //pushForMoreSpeedText.enabled = false;
                             tapRunButtonImage.SetActive(false);
                             rightHelpArrowImage.SetActive(false);
                             pushSpeedButton = true;
@@ -140,12 +143,10 @@ public class GameManager : MonoBehaviour
                     }
                     else if (pushSpeedButton && !pushJumpButton)
                     {
-                        //pushToJumpText.enabled = true;
                         tapJumpButtonImage.SetActive(true);
                         leftHelpArrowImage.SetActive(true);
                         if((Input.GetKeyDown(KeyCode.LeftControl) || Keyboard.current.leftCtrlKey.wasPressedThisFrame))
                         {
-                            //pushToJumpText.enabled = false;
                             tapJumpButtonImage.SetActive(false);
                             leftHelpArrowImage.SetActive(false);
                             pushJumpButton = true;
@@ -155,16 +156,20 @@ public class GameManager : MonoBehaviour
                 }
                 else if (gameTutorialComplete && !startTimerFinished)
                 {
-                    if (!startTimerStarted) { timerText.text = "GET READY"; }
+                    if (!startTimerStarted) { getReadyImage.SetActive(true); }
                     StartCoroutine(StartTheTimer());
                     if (startTimer >= 1 && startTimerStarted)
                     {
-                        //timerText.text = startTimer.ToString("F0");
+                        getReadyImage.SetActive(false);
+                        energyArrowHelpImage.SetActive(true);
+                        energyZoneHelpImage.SetActive(true);
                     }
                     else if (startTimer <= 0)
                     {
                         startGame.Raise(this, gameTutorialComplete);
-                        timerText.text = "GO!";
+                        goImage.SetActive(true);
+                        energyArrowHelpImage.SetActive(false);
+                        energyZoneHelpImage.SetActive(false);
                         StartCoroutine(DisableStartTimerText());
                     }
                 }
@@ -174,12 +179,10 @@ public class GameManager : MonoBehaviour
                 {
                     if (!pushSpeedButton)
                     {
-                        //pushForMoreSpeedText.enabled = true;
                         tapRunButtonImage.SetActive(true);
                         rightHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.Space) || Keyboard.current.spaceKey.wasPressedThisFrame))
                         {
-                            //pushForMoreSpeedText.enabled = false;
                             tapRunButtonImage.SetActive(false);
                             rightHelpArrowImage.SetActive(false);
                             pushSpeedButton = true;
@@ -188,12 +191,12 @@ public class GameManager : MonoBehaviour
 
                     else if (pushSpeedButton && !pushThrowButton)
                     {
-                        //pushToThrowText.enabled = true;
                         tapThrowButtonImage.SetActive(true);
                         leftHelpArrowImage.SetActive(true);
                         if ((Input.GetKeyDown(KeyCode.D) || Keyboard.current.dKey.wasPressedThisFrame))
                         {
-                            //pushToThrowText.enabled = false;
+                            AnimationController.instance.SetAnimationTrigger("throw");
+                            SoundManager.instance.PlayAudio(4);
                             tapThrowButtonImage.SetActive(false);
                             leftHelpArrowImage.SetActive(false);
                             pushThrowButton = true;
@@ -204,16 +207,20 @@ public class GameManager : MonoBehaviour
 
                 else if (gameTutorialComplete && !startTimerFinished)
                 {
-                    if (!startTimerStarted) { timerText.text = "GET READY"; }
+                    if (!startTimerStarted) { getReadyImage.SetActive(true); }
                     StartCoroutine(StartTheTimer());
                     if (startTimer >= 1 && startTimerStarted)
                     {
-                        //timerText.text = startTimer.ToString("F0");
+                        getReadyImage.SetActive(false);
+                        energyArrowHelpImage.SetActive(true);
+                        energyZoneHelpImage.SetActive(true);
                     }
                     else if (startTimer <= 0)
                     {
                         startGame.Raise(this, gameTutorialComplete);
-                        timerText.text = "GO!";
+                        goImage.SetActive(true);
+                        energyArrowHelpImage.SetActive(false);
+                        energyZoneHelpImage.SetActive(false);
                         StartCoroutine(DisableStartTimerText());
                     }
                 }
@@ -251,6 +258,7 @@ public class GameManager : MonoBehaviour
     {
         startTimerFinished = true;
         yield return new WaitForSeconds(1f);
-        timerText.enabled = false;
+        goImage.SetActive(false);
+        //timerText.enabled = false;
     }
 }

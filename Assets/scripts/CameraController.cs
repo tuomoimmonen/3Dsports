@@ -111,12 +111,12 @@ public class CameraController : MonoBehaviour
         Vector3 playerPosition = player.transform.position;
         Vector3 finalPosition = playerPosition + offset;
         //Quaternion finalRotation = Quaternion.Euler(25, 180, 0);
-        Quaternion finalRotation = Quaternion.Euler(-5, 0, 0);
+        Quaternion finalRotation = Quaternion.Euler(-5f, 0, 0); //hard code rot
 
         Vector3 lerpedPos = Vector3.Lerp(Camera.main.transform.position, finalPosition, lerpSpeed * Time.deltaTime);
         Quaternion lerpedRot = Quaternion.Lerp(Camera.main.transform.rotation, finalRotation, lerpSpeed * Time.deltaTime);
 
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fovMax + 10f, Time.deltaTime);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fovMax + 20f, Time.deltaTime);
         Camera.main.transform.position = lerpedPos;
         Camera.main.transform.rotation = lerpedRot;
     }
@@ -124,7 +124,7 @@ public class CameraController : MonoBehaviour
     private void RunningFinishedCameraPosition()
     {
         playerCamera.enabled = false;
-        float lerpSpeed = 2f;
+        float lerpSpeed = 3f;
         Vector3 offset = new Vector3(0f, 2f, 1f);
         Vector3 playerPosition = player.transform.position + player.transform.forward * 4f;
         Vector3 finalPosition = playerPosition + offset;
@@ -133,27 +133,12 @@ public class CameraController : MonoBehaviour
         Vector3 lerpedPos = Vector3.Lerp(Camera.main.transform.position, finalPosition, lerpSpeed * Time.deltaTime);
         Quaternion lerpedRot = Quaternion.Lerp(Camera.main.transform.rotation, finalRotation, lerpSpeed * Time.deltaTime);
 
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fovMin + 10f, Time.deltaTime);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fovMin + 20f, Time.deltaTime);
         Camera.main.transform.position = lerpedPos;
         Camera.main.transform.rotation = lerpedRot;
     }
 
-    private void JumpingFinishedCameraPosition()
-    {
-        playerCamera.enabled = false;
-        float lerpSpeed = 2f;
-        Vector3 offset = new Vector3(0f, 2f, 1f);
-        Vector3 playerPosition = player.transform.position + player.transform.forward * 4f;
-        Vector3 finalPosition = playerPosition + offset;
-        Quaternion finalRotation = Quaternion.Euler(13, 180, 0);
 
-        Vector3 lerpedPos = Vector3.Lerp(Camera.main.transform.position, finalPosition, lerpSpeed * Time.deltaTime);
-        Quaternion lerpedRot = Quaternion.Lerp(Camera.main.transform.rotation, finalRotation, lerpSpeed * Time.deltaTime);
-
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fovMin + 10f, Time.deltaTime);
-        Camera.main.transform.position = lerpedPos;
-        Camera.main.transform.rotation = lerpedRot;
-    }
 
     public void SetPlayerFinishedBool(Component sender, object data)
     {

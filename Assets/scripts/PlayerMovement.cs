@@ -283,6 +283,7 @@ public class PlayerMovement : MonoBehaviour
                 HighScoresText.instance.UpdateScoreText();
                 HighScoresText.instance.UpdateCurrentScoreText(distanceJumped, sceneIndex);
                 SoundManager.instance.PlayAudio(7);
+                AnimationController.instance.SetAnimationTrigger("win");
             }
             else if (!playerIsInJumpZone)
             {

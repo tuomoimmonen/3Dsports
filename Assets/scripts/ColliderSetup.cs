@@ -47,6 +47,7 @@ public class ColliderSetup : MonoBehaviour
                 sceneFinished.Raise(this, playerFinished);
                 changeCanMoveBool.Raise(this, playerCanMove);
                 SoundManager.instance.PlayAudio(7);
+                AnimationController.instance.SetAnimationTrigger("win");
             }
             else if ((sceneIndex == 2) || (sceneIndex == 3)) 
             {

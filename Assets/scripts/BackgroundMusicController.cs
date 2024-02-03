@@ -18,6 +18,7 @@ public class BackgroundMusicController : MonoBehaviour
         if (instance != this && instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -55,13 +56,13 @@ public class BackgroundMusicController : MonoBehaviour
         if (scene.buildIndex == 0)
         {
             targetClip = mainMenuMusic;
-            musicSource.volume = 0.1f;
+            //musicSource.volume = 0.1f;
             musicSource.loop = true;
         }
         else if (scene.buildIndex != 0)
         {
             targetClip = gameMusic[musicIndex];
-            musicSource.volume = 0.05f;
+            //musicSource.volume = 0.05f;
             musicSource.loop = false;
         }
 

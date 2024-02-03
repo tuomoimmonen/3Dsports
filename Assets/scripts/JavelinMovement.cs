@@ -98,6 +98,7 @@ public class JavelinMovement : MonoBehaviour
                 HighScoresText.instance.UpdateScoreText();
                 HighScoresText.instance.UpdateCurrentScoreText(distanceTraveledInAir, sceneIndex);
                 SoundManager.instance.PlayAudioNotPitched(7);
+                AnimationController.instance.SetAnimationTrigger("win");
 
             }
             else if (!playerInThrowZone)

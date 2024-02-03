@@ -4,21 +4,43 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void StartGame()
+    [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject levelPanel;
+    public void StartGame(int sceneIndex)
     {
-        StartCoroutine(StartLoadingLevel());
+        StartCoroutine(StartLoadingLevel(sceneIndex));
     }
 
-    private IEnumerator StartLoadingLevel()
+    private IEnumerator StartLoadingLevel(int sceneIndex)
     {
         SoundManager.instance.PlayAudio(0);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ResetHighScoresButton()
+    {
+        SoundManager.instance.PlayAudio(0);
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(0);
+    }
+
+    public void ToggleSettingsPanel()
+    {
+        SoundManager.instance.PlayAudio(0);
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
+    }
+
+    public void ToggleLevelPanel()
+    {
+        SoundManager.instance.PlayAudio(0);
+        levelPanel.SetActive(!levelPanel.activeSelf);
     }
 
 

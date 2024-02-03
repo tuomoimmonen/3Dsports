@@ -14,7 +14,7 @@ public class SpeedText : MonoBehaviour
 
     private void SetSpeedText(float speed)
     {
-        speedText.text = "Speed: " + speed.ToString("F") + "km/h";
+        speedText.text = "Speed: " + speed.ToString("F1") + "km/h";
     }
 
     public void UpdateSpeedText(Component sender, object data)

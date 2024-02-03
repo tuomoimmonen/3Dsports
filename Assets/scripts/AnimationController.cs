@@ -16,6 +16,8 @@ public class AnimationController : MonoBehaviour
     [SerializeField] float maxAnimSpeed = 2.0f;
     [SerializeField] float maxPlayerSpeed = 25.0f;
 
+    bool playerCanMove = true;
+
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -57,7 +59,7 @@ public class AnimationController : MonoBehaviour
 
         anim.SetFloat("zVelocity", playerSpeed, 0.1f, Time.deltaTime);
 
-        if (animatorState.IsName("run/idle"))
+        if (animatorState.IsName("run/idle") && playerCanMove)
         {
             float normalizedSpeed = playerSpeed / maxPlayerSpeed; // value 0-1
             normalizedSpeed = Mathf.Clamp01(normalizedSpeed);
@@ -65,6 +67,7 @@ public class AnimationController : MonoBehaviour
 
             anim.speed = Mathf.Lerp(anim.speed, remappedSpeed, Time.deltaTime);
         }
+        else { anim.speed = 1f; }
     }
 
     public void SetAnimationTrigger(string name)
@@ -77,6 +80,14 @@ public class AnimationController : MonoBehaviour
         if(data is float)
         {
             playerSpeed = (float)data;
+        }
+    }
+
+    public void CanPlayerMove(Component sender, object data)
+    {
+        if(data is bool)
+        {
+            playerCanMove = (bool)data;
         }
     }
 
