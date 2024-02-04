@@ -74,6 +74,7 @@ public class PanelManager : MonoBehaviour
 
     IEnumerator ReloadTheScene()
     {
+        SoundManager.instance.PlayAudio(0);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

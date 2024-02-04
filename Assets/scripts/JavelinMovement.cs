@@ -44,8 +44,7 @@ public class JavelinMovement : MonoBehaviour
         javelinRb.useGravity = false;
         javelinRb.isKinematic = true;
 
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
-        if(buildIndex != 3)
+        if(sceneIndex != 3)
         {
             MeshRenderer javelinMesh = GetComponent<MeshRenderer>();
             javelinMesh.enabled = false;

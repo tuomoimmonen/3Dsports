@@ -52,12 +52,13 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Application.targetFrameRate = 60;
         timerText.text = "";
     }
 
     void Update()
     {
-        DebugLevels();
+        //DebugLevels();
         GameTutorial();
 
         if(startTimerStarted && !startBeepsPlayed) 

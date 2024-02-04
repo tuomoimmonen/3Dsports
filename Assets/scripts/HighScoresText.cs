@@ -50,7 +50,7 @@ public class HighScoresText : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log(sceneIndex);
+        //Debug.Log(sceneIndex);
         UpdateScoreText();
     }
 

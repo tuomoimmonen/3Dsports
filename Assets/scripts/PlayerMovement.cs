@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        /*
         //DEBUG REMEMBER TO DISABLE
         if (Input.GetKeyDown(KeyCode.R)) 
         {
@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
         }
         //DEBUG REMEMBER TO DISABLE
+        */
 
         //todo gamemanager
 
@@ -116,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             speed = Mathf.Lerp(speed, 0, Time.deltaTime * finishSlowDuration); //slow the player in the finish line
         }
 
-        DebugDrawRay();
+        //DebugDrawRay();
     }
 
     public void JumpKey()

@@ -7,9 +7,7 @@ public class ColliderSetup : MonoBehaviour
 {
     [SerializeField] float waitBeforeLoadingNextLevel = 5f;
 
-
     public GameEvent sceneFinished;
-    //public GameEvent playerOverStepped;
     public GameEvent changeCanMoveBool;
 
     int sceneIndex;
@@ -20,15 +18,6 @@ public class ColliderSetup : MonoBehaviour
     private void Awake()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,8 +40,6 @@ public class ColliderSetup : MonoBehaviour
             }
             else if ((sceneIndex == 2) || (sceneIndex == 3)) 
             {
-                //sceneFinished.Raise(this, playerFinished);
-                //playerOverStepped.Raise(this, playerFinished);
                 changeCanMoveBool.Raise(this, playerCanMove);
             }
 
